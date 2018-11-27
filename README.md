@@ -4,7 +4,7 @@ Ticket Information Manager
 
 ______________________________________________________________________________________________________________________________________
 
-## This is the gudieline of how to edit the README.md file.
+## This is the guidance of how to edit the README.md file.
 
 You can use the [editor on GitHub](https://github.com/LeeYatSan/TIM/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
