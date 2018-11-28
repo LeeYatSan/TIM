@@ -2,6 +2,9 @@
 
 Ticket Information Manager
 
+## UML CLASS DIAGRAM
+![image](https://github.com/LeeYatSan/TIM/blob/master/TIM.svg)
+
 ______________________________________________________________________________________________________________________________________
 
 ## This is the guidance of how to edit the README.md file.
