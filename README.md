@@ -5,6 +5,8 @@ Ticket Information Manager
 ## UML CLASS DIAGRAM
 ![image](https://github.com/LeeYatSan/TIM/blob/master/TIM.svg)
 
+https://www.lucidchart.com/invitations/accept/94408bc6-9124-4f77-ad66-c5bef60a92b4
+
 ______________________________________________________________________________________________________________________________________
 
 ## This is the guidance of how to edit the README.md file.
