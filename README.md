@@ -24,5 +24,5 @@ Ticket Information Manager
 - +String getTCity()
 - +String  getDate()
 - +String getNum()
- +String getPrice()
+- +String getPrice()
 
