@@ -20,7 +20,7 @@ Check whether the inputted city name exists in the database or not.
 ##### +boolean checkNum(String ID,, String Date)
 Check whether their is a remaining ticket of specific date and train ID or not.
 ##### +void purchace(String ID, String Date)
-The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it need to refresh the database. 
+The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database. 
 
 #### Class TicketInfo 车票信息类
 The following methods are all used to return a specific data of a TicketInfo instance.
