@@ -12,7 +12,7 @@ Ticket Information Manager
 
 #### Class BackEnd 后端类
 - +TicketCollection getTicketCollection(String SCity, TCity, String date)//返回搜索结果
-- +boolean checkPayment(String price, String pay)//检查输入金额是否符合票价
+- +int checkPayment(String price, String pay)//检查输入金额是否符合票价,并返回价格与支付金额的差价（整数值）
 - +boolean checkCity(String city)//检查在数据库中存有输入城市数据
 - +boolean checkNum(String ID,, String Date)//检查指定班次日期是否有余票
 - +void purchace(String ID, String Date)//购买操作，用于前端页面通知后端购买行为的发生
