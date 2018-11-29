@@ -20,8 +20,8 @@ public class BackEnd {
         return List;
     }
 
-    public boolean checkPayment(String price, String pay){
-        return true;
+    public int checkPayment(String price, String pay){
+        return 0;
     }
 
     public boolean checkCity(String city){

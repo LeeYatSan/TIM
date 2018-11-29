@@ -45,8 +45,8 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         Date = new JTextField(20);
         Banner = new JPanel();
         Foot = new JPanel();
-        Search = new JButton("搜索 SEARCH");
-        Purchase = new JButton("购买 PURCHASE");
+        Search = new JButton("SEARCH");
+        Purchase = new JButton("PURCHASE");
         refresh();//刷新列表
         curr_date = new Date();
         format.setLenient(false);
@@ -83,15 +83,15 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         Purchase.addActionListener(this);
         //Banner组装
         Banner.add(Box.createHorizontalStrut(30));
-        Banner.add(new JLabel("始发城市："));
+        Banner.add(new JLabel("Departure："));
         Banner.add(SCity);
         Banner.add(Box.createHorizontalStrut(15));
         Banner.add(new JLabel("⇋"));
         Banner.add(Box.createHorizontalStrut(15));
-        Banner.add(new JLabel("目的城市："));
+        Banner.add(new JLabel("Arrival"));
         Banner.add(TCity);
         Banner.add(Box.createHorizontalStrut(15));
-        Banner.add(new JLabel("出发时间 (YYYY/MM/DD)："));
+        Banner.add(new JLabel("Departure Date (YYYY/MM/DD)："));
         Banner.add(Date);
         Banner.add(Box.createHorizontalStrut(15));
         Banner.add(Search);
@@ -134,7 +134,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         if(!Control.checkCity(SCity.getText()) || !Control.checkCity(TCity.getText()))
         {
             JOptionPane.showMessageDialog(null,
-                    "Non-existent city!", "INPUT ERROR", JOptionPane.ERROR_MESSAGE);
+                    "TIM - Non-existent city!", "INPUT ERROR", JOptionPane.ERROR_MESSAGE);
             SCity.setText("");
             TCity.setText("");
             validate();
@@ -145,19 +145,53 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         //购票
 
         TicketInfo selected_item = (TicketInfo)show_collection.get(selected_index);
-        if(selected_index == -1)
+        if(selected_index == -1)//未选中
         {
             JOptionPane.showMessageDialog(null,
-                    "You don't select any ticket yat", "FAIL TO BUY", JOptionPane.ERROR_MESSAGE);
+                    "You don't select any ticket yat", "FAIL TO BUY", JOptionPane.ERROR_MESSAGE, null);
         }
-        else if(Control.checkNum(selected_item.getID(), selected_item.getDate()))
-        {
-
-        }
-        else
+        else if(!Control.checkNum(selected_item.getID(), selected_item.getDate()))//无余票
         {
             JOptionPane.showMessageDialog(null,
-                    "Insufficient ticket!", "FAIL TO BUY", JOptionPane.ERROR_MESSAGE);
+                    "Insufficient ticket!", "FAIL TO BUY", JOptionPane.ERROR_MESSAGE, null);
+        }
+        else//正常购买
+        {
+            TIMGUIPurchaseDig purchaseDig = new TIMGUIPurchaseDig(selected_item);
+            while(true)
+            {
+                int result = JOptionPane.showConfirmDialog(null, purchaseDig,
+                        "TIM - Buy Ticket", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
+                if (result == JOptionPane.OK_OPTION) //确认支付
+                {
+                    int change = Control.checkPayment(selected_item.getPrice(), purchaseDig.getPayment());
+                    if(change >= 0)//支付成功
+                    {
+                        TIMGUIExchangeSuccessfully success = new TIMGUIExchangeSuccessfully(selected_item,
+                                purchaseDig.getPayment(), change);
+                        JOptionPane.showMessageDialog(null, success,
+                                "TIM - Buy Ticket", JOptionPane.OK_OPTION, null);
+                        Control.purchace(selected_item.getID(), selected_item.getDate());
+                        break;
+                    }
+                    else//支付失败
+                    {
+                        TIMGUIInsufficientPayment insufficientPayment =
+                                new TIMGUIInsufficientPayment(selected_item.getPrice(), purchaseDig.getPayment());
+                        JOptionPane.showMessageDialog(null, insufficientPayment,
+                                "TIM - Buy Ticket", JOptionPane.OK_OPTION, null);
+                        continue;
+                    }
+                }
+                else if (result == JOptionPane.CANCEL_OPTION)//取消支付
+                {
+                    TIMGUIExchangeCancel exchangeCancel =
+                            new TIMGUIExchangeCancel(purchaseDig.getPayment());
+                    JOptionPane.showMessageDialog(null, exchangeCancel,
+                            "TIM - Buy Ticket", JOptionPane.OK_OPTION, null);
+                    break;
+                }
+            }
         }
     }
     private void refresh()

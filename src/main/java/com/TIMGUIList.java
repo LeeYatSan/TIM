@@ -34,13 +34,13 @@ public class TIMGUIList extends JPanel {
         JTextField date = new JTextField();
         JTextField price = new JTextField();
         JTextField buy = new JTextField();
-        id.setText("班次");
-        scity.setText("始发城市");
-        tcity.setText("目的城市");
-        date.setText("日期");
-        num.setText("余票数量");
-        price.setText("价格");
-        buy.setText("选择");
+        id.setText("ID");
+        scity.setText("Departure");
+        tcity.setText("Arrival");
+        date.setText("Departure Date");
+        num.setText("Remaining Tickets");
+        price.setText("Price");
+        buy.setText("Selection");
         //布局
         FlowLayout f=(FlowLayout)getLayout();
         f.setHgap(5);//水平间距
