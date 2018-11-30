@@ -19,21 +19,21 @@ import java.util.Date;
 public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionListener, FocusListener {
 
     //面部显示基本参数
-    BackEnd Control;//后端控制
-    JTextField SCity;//始发城市
-    JTextField TCity;//目的城市
-    JTextField Date;//出发日期
-    Box Main = Box.createVerticalBox();;//总体架构
-    JPanel Banner;//顶部控制栏
-    JPanel Foot;//底部栏
-    TIMGUIList List = null;//信息显示表
-    JButton Search;//搜索按钮
-    JButton Purchase;//购买按钮
-    SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");//日期格式
-    Date curr_date;//当前日期
-    String today;//当前日期字符串
-    int selected_index = -1;//选择序号
-    TicketCollection show_collection;//展示结果
+    private BackEnd Control;//后端控制
+    private JTextField SCity;//始发城市
+    private JTextField TCity;//目的城市
+    private JTextField Date;//出发日期
+    private Box Main = Box.createVerticalBox();;//总体架构
+    private JPanel Banner;//顶部控制栏
+    private final JPanel Foot;//底部栏
+    private TIMGUIList List = null;//信息显示表
+    private final JButton Search;//搜索按钮
+    private final JButton Purchase;//购买按钮
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");//日期格式
+    private Date curr_date;//当前日期
+    private String today;//当前日期字符串
+    private int selected_index = -1;//选择序号
+    private TicketCollection show_collection;//展示结果
 
     TIMGUIMainWindow(){
         //默认构造函数
@@ -172,6 +172,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
                         JOptionPane.showMessageDialog(null, success,
                                 "TIM - Buy Ticket", JOptionPane.OK_OPTION, null);
                         Control.purchace(selected_item.getID(), selected_item.getDate());
+                        refresh();
                         break;
                     }
                     else//支付失败
@@ -208,9 +209,9 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
             checkCity();
         else if(e.getSource() == Purchase)
         {
-            selected_index = List.item_list.getSelectedIndex();//获取选中事件序号
+            selected_index = List.getList().getSelectedIndex();//获取选中事件序号
             Purchase();
-            List.item_list.clearSelection();
+            List.getList().clearSelection();
             selected_index = -1;
         }
     }

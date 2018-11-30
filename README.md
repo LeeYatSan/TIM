@@ -3,26 +3,30 @@
 Ticket Information Manager
 
 ## UML CLASS DIAGRAM
+[LINK](https://www.lucidchart.com/invitations/accept/94408bc6-9124-4f77-ad66-c5bef60a92b4)
 ![image](https://github.com/LeeYatSan/TIM/blob/master/TIM.svg)
 
 
-- LINK https://www.lucidchart.com/invitations/accept/94408bc6-9124-4f77-ad66-c5bef60a92b4
+### Instruction of some methods
 
-### 部分函数方法解释
+#### Class BackEnd - Back-end class
+ 
+|     Method      |  Function  |
+| ----------------------- | ------------- |
+| +TicketCollection getTicketCollection(String SCity, TCity, String date)    | Retrun search results. |
+| +int checkPayment(String price, String pay)    | Check whether the inputted payment is enough to pay or not, and return the result (An integer) of price minus pay.  |
+| +boolean checkCity(String city) | Check whether the inputted city name exists in the database or not. |
+| +boolean checkNum(String ID,, String Date) | Check whether their is a remaining ticket of specific date and train ID or not. |
+| +void purchae(String ID, String Date) | The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database.  |
 
-#### Class BackEnd 后端类
-- +TicketCollection getTicketCollection(String SCity, TCity, String date)//返回搜索结果
-- +boolean checkPayment(String price, String pay)//检查输入金额是否符合票价
-- +boolean checkCity(String city)//检查在数据库中存有输入城市数据
-- +boolean checkNum(String ID,, String Date)//检查指定班次日期是否有余票
-- +void purchace(String ID, String Date)//购买操作，用于前端页面通知后端购买行为的发生
 
-#### Class TicketInfo 车票信息类
-以下方法均为获取对应数据
-- +String getID()
-- +String getSCity()
-- +String getTCity()
-- +String  getDate()
-- +String getNum()
-- +String getPrice()
-
+#### Class TicketInfo - Contains ticket information.
+ 
+|     Method         |  Function  |
+| ---------------    | ------------- |
+| +String getID()    | Return ticket ID |
+| +String getSCity() | Return departure city |
+| +String getTCity() | Return arrival city |
+| +String getDate()  | Return departure date and time |
+| +String getNum()   | Return specific remaining tickets number |
+| +String getPrice() | Return ticket price |
