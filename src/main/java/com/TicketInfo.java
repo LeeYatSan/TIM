@@ -8,12 +8,12 @@
 package com;
 
 public class TicketInfo {
-    String ID;
-    String SCity;
-    String TCity;
-    String Date;
-    String num;
-    String Price;
+    private String ID;
+    private String SCity;
+    private String TCity;
+    private String Date;
+    private String num;
+    private String Price;
 
     TicketInfo()
     {
@@ -24,27 +24,21 @@ public class TicketInfo {
         num = "133";
         Price = "233";
     }
-
     public String getID() {
         return ID;
     }
-
     public String getSCity() {
         return SCity;
     }
-
     public String getTCity(){
         return TCity;
     }
-
     public String getDate(){
         return  Date;
     }
-
     public String getNum(){
         return num;
     }
-
     public String getPrice(){
         return Price;
     }

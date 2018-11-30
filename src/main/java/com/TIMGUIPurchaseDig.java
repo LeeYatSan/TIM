@@ -16,8 +16,8 @@ import java.awt.event.KeyListener;
 
 public class TIMGUIPurchaseDig extends JPanel{
 
-    TicketInfo currTicket;
-    JLabel msg = new JLabel("Please check your ticket info:");
+    private TicketInfo currTicket;
+    private JLabel msg = new JLabel("Please check your ticket info:");
     private JTextField ID;
     private JTextField SCity;
     private JTextField TCity;
