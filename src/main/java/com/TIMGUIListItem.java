@@ -17,10 +17,15 @@ import java.util.Date;
 
 public class TIMGUIListItem extends JPanel implements ListCellRenderer {
 
-    BackEnd Control;
-    JButton selected, ban_selected;
-    JPanel pad = new JPanel();
-    JTextField ID, SCity, TCity, num, date, price;
+    private BackEnd Control;
+    private JButton selected, ban_selected;
+    private JPanel pad = new JPanel();
+    private JTextField ID, SCity, TCity, num, date, price;
+    private static final int col_width = 200;
+    private static final int row_height = 60;
+    private static final int selection_flag_width = 100;
+    private static final int selection_flag_size = 30;
+    private static final int font_size = 20;
 
     TIMGUIListItem(BackEnd Control){
 
@@ -29,8 +34,6 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
         f.setHgap(0);//水平间距
         f.setVgap(0);//组件垂直间距
         setLayout(f);
-//        GridLayout grid = new GridLayout();
-//        grid.setHgap(-50);
         //初始化
         this.Control = Control;
 
@@ -58,46 +61,46 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
         selected.setLayout(f);
         ban_selected.setLayout(f);
         //装饰
-        ID.setPreferredSize(new Dimension(200, 60));
+        ID.setPreferredSize(new Dimension(col_width, row_height));
         ID.setBackground(Color.WHITE);
         ID.setForeground(Color.GRAY);
         ID.setHorizontalAlignment(JTextField.CENTER);
-        ID.setFont(new Font("TimesRoman",Font.BOLD,25));
-        SCity.setPreferredSize(new Dimension(200, 60));
+        ID.setFont(new Font("TimesRoman",Font.BOLD,font_size));
+        SCity.setPreferredSize(new Dimension(col_width, row_height));
         SCity.setBackground(Color.WHITE);
         SCity.setForeground(Color.GRAY);
         SCity.setHorizontalAlignment(JTextField.CENTER);
-        SCity.setFont(new Font("TimesRoman",Font.BOLD,25));
-        TCity.setPreferredSize(new Dimension(200, 60));
+        SCity.setFont(new Font("TimesRoman",Font.BOLD,font_size));
+        TCity.setPreferredSize(new Dimension(col_width, row_height));
         TCity.setBackground(Color.WHITE);
         TCity.setForeground(Color.GRAY);
         TCity.setHorizontalAlignment(JTextField.CENTER);
-        TCity.setFont(new Font("TimesRoman",Font.BOLD,25));
-        date.setPreferredSize(new Dimension(200, 60));
+        TCity.setFont(new Font("TimesRoman",Font.BOLD,font_size));
+        date.setPreferredSize(new Dimension(col_width, row_height));
         date.setBackground(Color.WHITE);
         date.setForeground(Color.GRAY);
         date.setHorizontalAlignment(JTextField.CENTER);
-        date.setFont(new Font("TimesRoman",Font.BOLD,25));
-        num.setPreferredSize(new Dimension(200, 60));
+        date.setFont(new Font("TimesRoman",Font.BOLD,font_size));
+        num.setPreferredSize(new Dimension(col_width, row_height));
         num.setBackground(Color.WHITE);
         num.setForeground(Color.GRAY);
         num.setHorizontalAlignment(JTextField.CENTER);
-        num.setFont(new Font("TimesRoman",Font.BOLD,25));
-        price.setPreferredSize(new Dimension(200, 60));
+        num.setFont(new Font("TimesRoman",Font.BOLD,font_size));
+        price.setPreferredSize(new Dimension(col_width, row_height));
         price.setBackground(Color.WHITE);
         price.setForeground(Color.GRAY);
         price.setHorizontalAlignment(JTextField.CENTER);
-        price.setFont(new Font("TimesRoman",Font.BOLD,25));
-        selected.setPreferredSize(new Dimension(100, 60));
+        price.setFont(new Font("TimesRoman",Font.BOLD,font_size));
+        selected.setPreferredSize(new Dimension(selection_flag_width, row_height));
         selected.setBackground(Color.WHITE);
         selected.setForeground(Color.GREEN);
         selected.setHorizontalAlignment(JTextField.CENTER);
-        selected.setFont(new Font("TimesRoman",Font.BOLD,30));
-        ban_selected.setPreferredSize(new Dimension(100, 60));
+        selected.setFont(new Font("TimesRoman",Font.BOLD,selection_flag_size));
+        ban_selected.setPreferredSize(new Dimension(selection_flag_width, row_height));
         ban_selected.setBackground(Color.WHITE);
         ban_selected.setForeground(Color.RED);
         ban_selected.setHorizontalAlignment(JTextField.CENTER);
-        ban_selected.setFont(new Font("TimesRoman",Font.BOLD,30));
+        ban_selected.setFont(new Font("TimesRoman",Font.BOLD,selection_flag_size));
     }
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

@@ -12,9 +12,9 @@ import java.awt.*;
 
 public class TIMGUIExchangeSuccessfully extends JPanel {
 
-    TicketInfo currTicket;
-    JLabel msg = new JLabel("Purchase successfully! Please take your change!");
-    JLabel info = new JLabel("Your ticket information:");
+    private TicketInfo currTicket;
+    private JLabel msg = new JLabel("Purchase successfully! Please take your change!");
+    private JLabel info = new JLabel("Your ticket information:");
     private JTextField ID;
     private JTextField SCity;
     private JTextField TCity;
