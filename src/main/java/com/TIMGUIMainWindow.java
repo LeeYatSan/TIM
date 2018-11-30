@@ -171,7 +171,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
                                 purchaseDig.getPayment(), change);
                         JOptionPane.showMessageDialog(null, success,
                                 "TIM - Buy Ticket", JOptionPane.OK_OPTION, null);
-                        Control.purchace(selected_item.getID(), selected_item.getDate());
+                        Control.purchase(selected_item.getID(), selected_item.getDate());
                         refresh();
                         break;
                     }
