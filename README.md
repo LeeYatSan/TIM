@@ -11,24 +11,23 @@ Ticket Information Manager
 ### Instruction of some methods
 
 #### Class BackEnd - Back-end class
-##### +TicketCollection getTicketCollection(String SCity, TCity, String date)
-Retrun search results.
-##### +int checkPayment(String price, String pay)
-Check whether the inputted payment is enough to pay or not, and return the result (An integer) of price minus pay.
-##### +boolean checkCity(String city)
-Check whether the inputted city name exists in the database or not.
-##### +boolean checkNum(String ID,, String Date)
-Check whether their is a remaining ticket of specific date and train ID or not.
-##### +void purchace(String ID, String Date)
-The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database. 
+ 
+|     Method      |  Function  |
+| ----------------------- | ------------- |
+| +TicketCollection getTicketCollection(String SCity, TCity, String date)    | Retrun search results. |
+| +int checkPayment(String price, String pay)    | Check whether the inputted payment is enough to pay or not, and return the result (An integer) of price minus pay.  |
+| +boolean checkCity(String city) | Check whether the inputted city name exists in the database or not. |
+| +boolean checkNum(String ID,, String Date) | Check whether their is a remaining ticket of specific date and train ID or not. |
+| +void purchace(String ID, String Date) | The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database.  |
 
 
 #### Class TicketInfo - Contains ticket information.
-The following methods are all used to return a specific data of a TicketInfo instance.
-
-- +String getID()
-- +String getSCity()
-- +String getTCity()
-- +String  getDate()
-- +String getNum()
-- +String getPrice()
+ 
+|     Method         |  Function  |
+| ---------------    | ------------- |
+| +String getID()    | Return ticket ID |
+| +String getSCity() | Return departure city |
+| +String getTCity() | Return arrival city |
+| +String getDate()  | Return departure date and time |
+| +String getNum()   | Return specific remaining tickets number |
+| +String getPrice() | Return ticket price |
