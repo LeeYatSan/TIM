@@ -16,7 +16,7 @@ Ticket Information Manager
 | +TicketCollection getTicketCollection(String SCity, TCity, String date)    | Retrun searching results. |
 | +int checkPayment(String price, String pay)    | Check whether the inputted payment is enough to pay or not, and return the result (An integer) of price minus pay.  |
 | +boolean checkCity(String city) | Check whether the inputted city name exists in the database or not. |
-| +boolean checkNum(String ID,, String Date) | Check whether their is a remaining ticket of specific date and train ID or not. |
+| +boolean checkNum(String ID, String Date) | Check whether their is a remaining ticket of specific date and train ID or not. |
 | +void purchase(String ID, String Date) | The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database.  |
 
 
