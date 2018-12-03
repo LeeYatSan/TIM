@@ -21,7 +21,7 @@ Ticket Information Manager
 | +void purchase(String ID, String Date， String pay, String change) | The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database.  |
 
 
-#### Class TicketInfo - Contains ticket information.
+#### Class TicketInfo - Contains ticket information. 
  
 |     Method         |  Function  |
 | ---------------    | ------------- |
@@ -32,13 +32,13 @@ Ticket Information Manager
 | +String getNum()   | Return specific remaining tickets number |
 | +String getPrice() | Return ticket price |
 
-#### Class DataTransmission - Transfer data between GUI and DB
+#### Class DataTransmission - Provides GUI with some interfaces for interacting with the data in the database.
 |     Method         |  Function  |
 | ---------------    | ------------- |
-| +TicketCollection getTickets(String SCity,String TCity,String date)    | Return search results. |
-| +TicketCollection getTicket(String City) | Return search results. |
-| +TicketInfo getTCity(String ID,String date) | Return search results. |
+| +TicketCollection getTickets(String SCity,String TCity,String date)    | Return searching results. The element type in searching results is TicketInfo|
+| +TicketCollection getTicket(String City) | Return searching results. |
+| +TicketInfo getTCity(String ID,String date) | Return searching results. |
 | +void updateTicketNum(String ID)  | Ticket number - 1 |
 | +void purchaseRecord(String ID,String date,String pay,String change)   | Record the certain purchase. |
-| +void close() | Cut out the connection. |
+| +void close() | Dconnection. |
 

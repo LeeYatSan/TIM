@@ -117,7 +117,8 @@ public class TIMGUIList extends JPanel {
         show_list.setLayout(new GridLayout(1, 1));
         list = Control.getTicketCollection(SCity, TCity, Date);
         info.removeAllElements();
-        if(list.isEmpty())
+//        if(list.isEmpty())
+        if(list == null)
         {
             info.addElement("[EMPTY]");
         }
