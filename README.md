@@ -32,14 +32,13 @@ Ticket Information Manager
 | +String getNum()   | Return specific remaining tickets number |
 | +String getPrice() | Return ticket price |
 
-#### Class TicketInfo - Contains ticket information.
- 
+#### Class DataTransmission - Transfer data between GUI and DB
 |     Method         |  Function  |
 | ---------------    | ------------- |
-| +String getID()    | Return ticket ID |
-| +String getSCity() | Return departure city |
-| +String getTCity() | Return arrival city |
-| +String getDate()  | Return departure date and time |
-| +String getNum()   | Return specific remaining tickets number |
-| +String getPrice() | Return ticket price |
+| +TicketCollection getTickets(String SCity,String TCity,String date)    | Return search results. |
+| +TicketCollection getTicket(String City) | Return search results. |
+| +TicketInfo getTCity(String ID,String date) | Return search results. |
+| +void updateTicketNum(String ID)  | Ticket number - 1 |
+| +void purchaseRecord(String ID,String date,String pay,String change)   | Record the certain purchase. |
+| +void close() | Cut out the connection. |
 
