@@ -6,7 +6,7 @@ Ticket Information Manager
 [LINK](https://www.lucidchart.com/invitations/accept/94408bc6-9124-4f77-ad66-c5bef60a92b4)
 ![image](https://github.com/LeeYatSan/TIM/blob/master/TIM.svg)
 
-[NOTE]The date format is YYYY/MM/DD
+[NOTE] The date format is YYYY/MM/DD
 
 ### Instruction of some methods
 
