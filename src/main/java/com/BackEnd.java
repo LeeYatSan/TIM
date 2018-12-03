@@ -1,8 +1,8 @@
 /**
  *@author
- *LI_Yichen
- *ID: 16130120145
- *e-mail: niuqiao2010@163.com
+ *Hongbo Wang
+ *ID: 16130120125
+ *e_mail: hbwang_2016@stu.xidian.edu.cn
  */
 
 
@@ -10,22 +10,33 @@ package com;
 
 public class BackEnd {
 
-    private TicketCollection List;
-
+    private DataTransmission dataTrans;
     BackEnd(){
-        List = new TicketCollection();
+        dataTrans = new DataTransmission();
     }
     public TicketCollection getTicketCollection(String SCity, String TCity, String date){
-        return List;
+    	return dataTrans.getTickets(SCity, TCity, date);
     }
     public int checkPayment(String price, String pay){
-        return 0;
+        return Integer.parseInt(pay)-Integer.parseInt(price);
     }
-    public boolean checkCity(String city){
-        if(city.equals("北京") || city.equals("上海"))
-            return true;
-        else return false;
+    public int checkCity(String City){
+    	TicketCollection List = dataTrans.getTicket(City);
+        if (List.isEmpty()) {
+        	return -1;
+        }
+        else
+        	return List.size();
     }
-    public void purchase(String ID, String date, String pay, String change){}
-    public boolean checkNum(String ID, String date){return true;}
+    public void purchase(String ID, String date,String pay,String change){
+    	dataTrans.updateTicketNum(ID);
+    	dataTrans.purchaseRecord(ID, date, pay, change);
+    }
+    public boolean checkNum(String ID, String date){
+    	TicketInfo ticket = dataTrans.getTicket(ID, date);
+    	if (Integer.valueOf(ticket.getNum())>0)
+    		return true;
+    	else
+    		return false;
+    }
 }
