@@ -35,7 +35,7 @@ Ticket Information Manager
 #### Class DataTransmission - Provides GUI with some interfaces for interacting with the data in the database.
 |     Method         |  Function  |
 | ---------------    | ------------- |
-| +TicketCollection getTickets(String SCity,String TCity,String date)    | Return searching results. |
+| +TicketCollection getTickets(String SCity,String TCity,String date)    | Return searching results. The element type in searching results is TicketInfo|
 | +TicketCollection getTicket(String City) | Return searching results. |
 | +TicketInfo getTCity(String ID,String date) | Return searching results. |
 | +void updateTicketNum(String ID)  | Ticket number - 1 |
