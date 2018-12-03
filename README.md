@@ -31,3 +31,15 @@ Ticket Information Manager
 | +String getDate()  | Return departure date and time |
 | +String getNum()   | Return specific remaining tickets number |
 | +String getPrice() | Return ticket price |
+
+#### Class TicketInfo - Contains ticket information.
+ 
+|     Method         |  Function  |
+| ---------------    | ------------- |
+| +String getID()    | Return ticket ID |
+| +String getSCity() | Return departure city |
+| +String getTCity() | Return arrival city |
+| +String getDate()  | Return departure date and time |
+| +String getNum()   | Return specific remaining tickets number |
+| +String getPrice() | Return ticket price |
+
