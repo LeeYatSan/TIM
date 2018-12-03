@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -131,7 +130,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
     private void checkCity(){
         //检查输入日期格式
 
-        if(!Control.checkCity(SCity.getText()) || !Control.checkCity(TCity.getText()))
+        if(Control.checkCity(SCity.getText()) < 0 || Control.checkCity(TCity.getText()) < 0)
         {
             JOptionPane.showMessageDialog(null,
                     "TIM - Non-existent city!", "INPUT ERROR", JOptionPane.ERROR_MESSAGE);
