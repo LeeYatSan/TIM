@@ -26,6 +26,6 @@ public class BackEnd {
             return true;
         else return false;
     }
-    public void purchase(String ID, String date){}
+    public void purchase(String ID, String date, String pay, String change){}
     public boolean checkNum(String ID, String date){return true;}
 }
