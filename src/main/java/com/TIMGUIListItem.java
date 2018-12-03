@@ -13,6 +13,7 @@ import javax.swing.table.TableCellEditor;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class TIMGUIListItem extends JPanel implements ListCellRenderer {
@@ -116,10 +117,15 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
             pad.add(date);
             pad.add(num);
             pad.add(price);
-            if(Control.checkNum(ti.getID(), ti.getDate()))
-                pad.add(selected);
-            else
-                pad.add(ban_selected);
+            try {
+				if(Control.checkNum(ti.getID(), ti.getDate()))
+				    pad.add(selected);
+				else
+				    pad.add(ban_selected);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             add(pad);
             ID.setText(ti.getID());
             SCity.setText(ti.getSCity());
