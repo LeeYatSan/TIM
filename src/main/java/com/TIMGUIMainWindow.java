@@ -10,6 +10,7 @@ package com;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
     private int selected_index = -1;//选择序号
     private TicketCollection show_collection;//展示结果
 
-    TIMGUIMainWindow(){
+    TIMGUIMainWindow() throws SQLException{
         //默认构造函数
 
         //初始化相关组件
@@ -127,10 +128,9 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
             Date.setText(today);//默认为当前日期
         }
     }
-    private void checkCity(){
+    private void checkCity() throws HeadlessException, SQLException{
         //检查输入日期格式
-
-        if(Control.checkCity(SCity.getText()) < 0 || Control.checkCity(TCity.getText()) < 0)
+        if(Control.checkCity(SCity.getText())>0 || Control.checkCity(TCity.getText())>0)
         {
             JOptionPane.showMessageDialog(null,
                     "TIM - Non-existent city!", "INPUT ERROR", JOptionPane.ERROR_MESSAGE);
@@ -139,7 +139,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
             validate();
         }
     }
-    private void Purchase()
+    private void Purchase() throws SQLException
     {
         //购票
 
@@ -194,7 +194,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
             }
         }
     }
-    private void refresh()
+    private void refresh() throws SQLException
     {
         List = new TIMGUIList(Control, SCity.getText(), TCity.getText(), Date.getText());
         List.updateUI();
@@ -205,17 +205,46 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
 
         checkDateFormat();
         if(e.getSource() == Search)
-            checkCity();
-        else if(e.getSource() == Purchase)
+			try {
+				checkCity();
+			} catch (HeadlessException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		else if(e.getSource() == Purchase)
         {
             selected_index = List.getList().getSelectedIndex();//获取选中事件序号
-            Purchase();
+            try {
+				Purchase();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             List.getList().clearSelection();
             selected_index = -1;
         }
     }
-    public void focusGained(FocusEvent e) { checkDateFormat(); checkCity();}//焦点监听
-    public void focusLost(FocusEvent e){ checkDateFormat(); checkCity();}//焦点丢失监听
+    public void focusGained(FocusEvent e) { checkDateFormat(); try {
+		checkCity();
+	} catch (HeadlessException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}}//焦点监听
+    public void focusLost(FocusEvent e){ checkDateFormat(); try {
+		checkCity();
+	} catch (HeadlessException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}}//焦点丢失监听
     public void mousePressed(MouseEvent e) {}
     public void mouseClicked(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}

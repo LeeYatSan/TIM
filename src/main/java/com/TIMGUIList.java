@@ -9,6 +9,7 @@ package com;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.Iterator;
 
 public class TIMGUIList extends JPanel {
@@ -24,7 +25,7 @@ public class TIMGUIList extends JPanel {
     private static final int selection_flag_width = 100;
     private static final int title_font_size = 20;
 
-    TIMGUIList(BackEnd Control, String SCity, String TCity, String Date){
+    TIMGUIList(BackEnd Control, String SCity, String TCity, String Date) throws SQLException{
         //默认构造函数
 
         this.Control = Control;
@@ -111,7 +112,7 @@ public class TIMGUIList extends JPanel {
         item_list.setPreferredSize(new Dimension(1500, 70));
         add(item_list);
     }
-    public void showList(/*, String type*/){
+    public void showList(/*, String type*/) throws SQLException{
         //展示列表
         show_list.setLayout(new GridLayout(1, 1));
         list = Control.getTicketCollection(SCity, TCity, Date);
