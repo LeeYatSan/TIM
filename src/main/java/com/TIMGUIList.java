@@ -19,6 +19,7 @@ public class TIMGUIList extends JPanel {
     private String SCity, TCity, Date;
     private JPanel show_list = new JPanel();
     private DefaultListModel info = new DefaultListModel();
+    private ListCellRenderer renderer;
     private final JList item_list = new JList(info);
     private static final int col_width = 200;
     private static final int row_height = 60;
@@ -110,6 +111,8 @@ public class TIMGUIList extends JPanel {
         info.removeAllElements();
         showList();
         item_list.setPreferredSize(new Dimension(1500, 70));
+        renderer = new TIMGUIListItem(Control);
+        item_list.setCellRenderer(renderer);
         add(item_list);
     }
     public void showList(/*, String type*/) throws SQLException{
@@ -117,8 +120,7 @@ public class TIMGUIList extends JPanel {
         show_list.setLayout(new GridLayout(1, 1));
         list = Control.getTicketCollection(SCity, TCity, Date);
         info.removeAllElements();
-//        if(list.isEmpty())
-        if(list == null)
+        if(list.isEmpty())
         {
             info.addElement("[EMPTY]");
         }
@@ -130,9 +132,6 @@ public class TIMGUIList extends JPanel {
                 TicketInfo curr = (TicketInfo)each_item.next();
                 info.addElement(curr);
             }
-            ListCellRenderer renderer = new TIMGUIListItem(Control);
-            item_list.setCellRenderer(renderer);
-            add(item_list);
         }
         item_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         item_list.updateUI();
