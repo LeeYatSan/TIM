@@ -9,6 +9,7 @@ package com;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.Iterator;
 
 public class TIMGUIList extends JPanel {
@@ -17,14 +18,15 @@ public class TIMGUIList extends JPanel {
     private TicketCollection list;
     private String SCity, TCity, Date;
     private JPanel show_list = new JPanel();
-    private DefaultListModel info = new DefaultListModel();
-    private final JList item_list = new JList(info);
+    private DefaultListModel<TicketInfo> info = new DefaultListModel<TicketInfo>();
+    private final JList<TicketInfo> item_list = new JList<TicketInfo>(info);
+    private final JScrollPane scrollPane  = new JScrollPane();
     private static final int col_width = 200;
     private static final int row_height = 60;
     private static final int selection_flag_width = 100;
     private static final int title_font_size = 20;
 
-    TIMGUIList(BackEnd Control, String SCity, String TCity, String Date){
+    TIMGUIList(BackEnd Control, String SCity, String TCity, String Date) throws SQLException{
         //默认构造函数
 
         this.Control = Control;
@@ -46,9 +48,11 @@ public class TIMGUIList extends JPanel {
         price.setText("Price");
         buy.setText("Selection");
         //布局
+        scrollPane.setViewportView(item_list);
         FlowLayout f=(FlowLayout)getLayout();
         f.setHgap(5);//水平间距
         //装饰
+        item_list.setOpaque(false);
         id.setEnabled(false);
         scity.setEnabled(false);
         tcity.setEnabled(false);
@@ -105,36 +109,53 @@ public class TIMGUIList extends JPanel {
         add(num);
         add(price);
         add(buy);
-        show_list.setLayout(new GridLayout(1, 1));
-        info.removeAllElements();
         showList();
-        item_list.setPreferredSize(new Dimension(1500, 70));
-        add(item_list);
+        scrollPane.setPreferredSize(new Dimension(1500, 800));
+        add(scrollPane);
     }
-    public void showList(/*, String type*/){
+    public void showList() throws SQLException{
         //展示列表
-        show_list.setLayout(new GridLayout(1, 1));
-        list = Control.getTicketCollection(SCity, TCity, Date);
-        info.removeAllElements();
+
+        try{
+            list = Control.getTicketCollection(SCity, TCity, Date);
+        } catch(Exception e) {System.out.println("@showList"); e.printStackTrace();}
+        info.clear();
         if(list.isEmpty())
         {
-            info.addElement("[EMPTY]");
+            JOptionPane.showMessageDialog(null,
+                    "No ticket! Please search other lines!", "FAIL TO BUY", JOptionPane.ERROR_MESSAGE, null);
         }
         else
         {
-            Iterator each_item = list.iterator();
-            while(each_item.hasNext())
-            {
-                TicketInfo curr = (TicketInfo)each_item.next();
+            System.out.println(list.size());
+            for (TicketInfo curr:list) {
+                System.out.println(curr.getID()+" "+curr.getDate());
                 info.addElement(curr);
             }
-            ListCellRenderer renderer = new TIMGUIListItem(Control);
-            item_list.setCellRenderer(renderer);
-            add(item_list);
+            item_list.setCellRenderer(new TIMGUIListItem(Control));
         }
         item_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         item_list.updateUI();
+        item_list.revalidate();
+        scrollPane.updateUI();
+        scrollPane.revalidate();
+    }
+    public void refreshShowList(String SCity, String TCity, String Date) throws SQLException {
+
+        this.SCity = SCity;
+        this.TCity = TCity;
+        this.Date = Date;
+        item_list.invalidate();
+        scrollPane.invalidate();
+        item_list.repaint();
+        scrollPane.repaint();
+        showList();
+    }
+    public void clear()
+    {
+        item_list.removeAll();
+        scrollPane.setViewportView(item_list);
     }
     public TicketCollection getSearchResult(){return list;}//返回搜索结果集
-    public JList getList(){return item_list;}//返回搜索列表
+    public JList<TicketInfo> getList(){return item_list;}//返回搜索列表
 }

@@ -13,12 +13,13 @@ import javax.swing.table.TableCellEditor;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class TIMGUIListItem extends JPanel implements ListCellRenderer {
 
     private BackEnd Control;
-    private JButton selected, ban_selected;
+    private JButton selected;
     private JPanel pad = new JPanel();
     private JTextField ID, SCity, TCity, num, date, price;
     private static final int col_width = 200;
@@ -44,8 +45,7 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
         num = new JTextField();
         date = new JTextField();
         price = new JTextField();
-        selected = new JButton("\uD83D\uDD33");
-        ban_selected = new JButton("\uD83D\uDEAB");
+        selected = new JButton();
         ID.setEnabled(false);
         SCity.setEnabled(false);
         TCity.setEnabled(false);
@@ -59,7 +59,7 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
         num.setLayout(f);
         price.setLayout(f);
         selected.setLayout(f);
-        ban_selected.setLayout(f);
+//        ban_selected.setLayout(f);
         //装饰
         ID.setPreferredSize(new Dimension(col_width, row_height));
         ID.setBackground(Color.WHITE);
@@ -93,14 +93,9 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
         price.setFont(new Font("TimesRoman",Font.BOLD,font_size));
         selected.setPreferredSize(new Dimension(selection_flag_width, row_height));
         selected.setBackground(Color.WHITE);
-        selected.setForeground(Color.GREEN);
+        selected.setForeground(Color.BLACK);
         selected.setHorizontalAlignment(JTextField.CENTER);
         selected.setFont(new Font("TimesRoman",Font.BOLD,selection_flag_size));
-        ban_selected.setPreferredSize(new Dimension(selection_flag_width, row_height));
-        ban_selected.setBackground(Color.WHITE);
-        ban_selected.setForeground(Color.RED);
-        ban_selected.setHorizontalAlignment(JTextField.CENTER);
-        ban_selected.setFont(new Font("TimesRoman",Font.BOLD,selection_flag_size));
     }
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -116,10 +111,7 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
             pad.add(date);
             pad.add(num);
             pad.add(price);
-            if(Control.checkNum(ti.getID(), ti.getDate()))
-                pad.add(selected);
-            else
-                pad.add(ban_selected);
+            pad.add(selected);
             add(pad);
             ID.setText(ti.getID());
             SCity.setText(ti.getSCity());
@@ -137,14 +129,13 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
             num.setBackground(Color.yellow);
             price.setBackground(Color.yellow);
             selected.setBackground(Color.yellow);
-            ID.setForeground(Color.RED);
-            SCity.setForeground(Color.RED);
-            TCity.setForeground(Color.RED);
-            date.setForeground(Color.RED);
-            num.setForeground(Color.RED);
-            price.setForeground(Color.RED);
-            selected.setText("☑");
-            ban_selected.setBackground(Color.yellow);
+            try {
+                if(Control.checkNum(ti.getID(), ti.getDate()))
+                    selected.setText("☑");
+                else
+                    selected.setText("\uD83D\uDEAB");
+            }
+            catch(Exception e) {e.printStackTrace();}
         }
         else
         {
@@ -155,14 +146,19 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
             num.setBackground(Color.WHITE);
             price.setBackground(Color.WHITE);
             selected.setBackground(Color.WHITE);
-            ban_selected.setBackground(Color.WHITE);
             ID.setForeground(Color.GRAY);
             SCity.setForeground(Color.GRAY);
             TCity.setForeground(Color.GRAY);
             date.setForeground(Color.GRAY);
             num.setForeground(Color.GRAY);
             price.setForeground(Color.GRAY);
-            selected.setText("\uD83D\uDD33");
+            try {
+                if(Control.checkNum(ti.getID(), ti.getDate()))
+                    selected.setText("\uD83D\uDD33");
+                else
+                    selected.setText("\uD83D\uDEAB");
+            }
+            catch(Exception e) {e.printStackTrace();}
         }
         return this;
     }
