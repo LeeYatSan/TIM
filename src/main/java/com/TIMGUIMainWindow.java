@@ -146,7 +146,7 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         //购票
 
         TicketInfo selected_item = show_collection.get(selected_index);
-        if(selected_index == -1)//未选中 
+        if(selected_index == -1)//未选中
         {
             JOptionPane.showMessageDialog(null,
                     "You don't select any ticket yat", "FAIL TO BUY", JOptionPane.ERROR_MESSAGE, null);

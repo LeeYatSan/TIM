@@ -16,12 +16,12 @@ Ticket Information Manager
 | ----------------------- | ------------- |
 | +TicketCollection getTicketCollection(String SCity, TCity, String date)    | Retrun searching results. |
 | +int checkPayment(String price, String pay)    | Check whether the inputted payment is enough to pay or not, and return the result (An integer) of price minus pay.  |
-| +boolean checkCity(String city) | Check whether the inputted city name exists in the database or not. |
-| +boolean checkNum(String ID, String Date) | Check whether there is a remaining ticket of specific date and train ID or not. |
+| +boolean checkCity(String city) | Check whether the inputted city name exists [TRUE] in the database or not [FALSE]. |
+| +boolean checkNum(String ID, String Date) | Check whether there is a remaining ticket of specific date [TRUE] and train ID or not [FALSE]. |
 | +void purchase(String ID, String Date， String pay, String change) | The purchase operation, which used by front-end GUI to notice the back-end that a successful purchase is done and it needs to refresh the database.  |
 
 
-#### Class TicketInfo - Contains ticket information.
+#### Class TicketInfo - Contains ticket information. 
  
 |     Method         |  Function  |
 | ---------------    | ------------- |
@@ -31,3 +31,14 @@ Ticket Information Manager
 | +String getDate()  | Return departure date and time |
 | +String getNum()   | Return specific remaining tickets number |
 | +String getPrice() | Return ticket price |
+
+#### Class DataTransmission - Provides GUI with some interfaces for interacting with the data in the database.
+|     Method         |  Function  |
+| ---------------    | ------------- |
+| +TicketCollection getTickets(String SCity,String TCity,String date)    | Return searching results. The element type in searching results is TicketInfo|
+| +TicketCollection getTicket(String City) | Return searching results. |
+| +TicketInfo getTCity(String ID,String date) | Return searching results. |
+| +void updateTicketNum(String ID)  | Ticket number - 1 |
+| +void purchaseRecord(String ID,String date,String pay,String change)   | Record the certain purchase. |
+| +void close() | Dconnection. |
+
