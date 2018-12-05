@@ -13,19 +13,19 @@ public class TicketInfo {
     private String TCity;
     private String Date;
     private int num;
-    private String Price;
+    private int Price;
 
     TicketInfo()
     {
-    	
+
     }
-    TicketInfo(String m_ID,String m_SCity,String m_TCity,String m_Date,int m_num,String m_Price){
-    	ID=m_ID;
-    	SCity = m_SCity;
-    	TCity = m_TCity;
-    	Date  = m_Date;
-    	num = m_num;
-    	Price = m_Price;
+    TicketInfo(String m_ID,String m_SCity,String m_TCity,String m_Date,int m_num,int m_Price){
+        ID=m_ID;
+        SCity = m_SCity;
+        TCity = m_TCity;
+        Date  = m_Date;
+        num = m_num;
+        Price = m_Price;
     }
     public String getID() {
         return ID;
@@ -43,6 +43,6 @@ public class TicketInfo {
         return String.valueOf(num);
     }
     public String getPrice(){
-        return Price;
+        return String.valueOf(Price);
     }
 }
