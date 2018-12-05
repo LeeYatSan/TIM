@@ -13,7 +13,7 @@ public class TicketCollection extends ArrayList<TicketInfo>{
 
     TicketCollection()
     {
-       
+
     }
-    
+
 }
