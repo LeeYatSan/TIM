@@ -77,6 +77,10 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         Banner.setPreferredSize(new Dimension(0,-30));
         Banner.setBackground(Color.yellow);
         Banner.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        //Marserati
+//        List.setSize(new Dimension(0, 900));
+//        Foot.setPreferredSize(new Dimension(0,0));
+        //LEE YAT-SAN
         List.setSize(new Dimension(0, 900));
         Foot.setPreferredSize(new Dimension(0,0));
         Purchase.setPreferredSize(new Dimension(1000,50));
@@ -218,7 +222,6 @@ public class TIMGUIMainWindow extends JFrame implements MouseListener, ActionLis
         else if(e.getSource() == Purchase)
         {
             selected_index = List.getList().getSelectedIndex();//获取选中事件序号
-            System.out.println("selected_id:"+selected_index);
             try {Purchase();}
             catch (SQLException e1) {e1.printStackTrace();}
             List.getList().clearSelection();

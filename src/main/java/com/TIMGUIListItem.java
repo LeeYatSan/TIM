@@ -93,7 +93,6 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
         price.setFont(new Font("TimesRoman",Font.BOLD,font_size));
         selected.setPreferredSize(new Dimension(selection_flag_width, row_height));
         selected.setBackground(Color.WHITE);
-        selected.setForeground(Color.BLACK);
         selected.setHorizontalAlignment(JTextField.CENTER);
         selected.setFont(new Font("TimesRoman",Font.BOLD,selection_flag_size));
     }
@@ -131,9 +130,15 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
             selected.setBackground(Color.yellow);
             try {
                 if(Control.checkNum(ti.getID(), ti.getDate()))
+                {
                     selected.setText("☑");
+                    selected.setForeground(Color.GREEN);
+                }
                 else
+                {
                     selected.setText("\uD83D\uDEAB");
+                    selected.setForeground(Color.RED);
+                }
             }
             catch(Exception e) {e.printStackTrace();}
         }
@@ -154,9 +159,15 @@ public class TIMGUIListItem extends JPanel implements ListCellRenderer {
             price.setForeground(Color.GRAY);
             try {
                 if(Control.checkNum(ti.getID(), ti.getDate()))
+                {
                     selected.setText("\uD83D\uDD33");
+                    selected.setForeground(Color.GREEN);
+                }
                 else
+                {
                     selected.setText("\uD83D\uDEAB");
+                    selected.setForeground(Color.RED);
+                }
             }
             catch(Exception e) {e.printStackTrace();}
         }

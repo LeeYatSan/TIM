@@ -10,7 +10,6 @@ package com;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
-import java.util.Iterator;
 
 public class TIMGUIList extends JPanel {
 
@@ -110,7 +109,10 @@ public class TIMGUIList extends JPanel {
         add(price);
         add(buy);
         showList();
-        scrollPane.setPreferredSize(new Dimension(1500, 800));
+        //Maserati
+//        scrollPane.setPreferredSize(new Dimension(1500, 800));
+        //LEE YAT-SAN
+        scrollPane.setPreferredSize(new Dimension(1500, 650));
         add(scrollPane);
     }
     public void showList() throws SQLException{
@@ -127,11 +129,7 @@ public class TIMGUIList extends JPanel {
         }
         else
         {
-            System.out.println(list.size());
-            for (TicketInfo curr:list) {
-                System.out.println(curr.getID()+" "+curr.getDate());
-                info.addElement(curr);
-            }
+            for (TicketInfo curr:list) { info.addElement(curr); }
             item_list.setCellRenderer(new TIMGUIListItem(Control));
         }
         item_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

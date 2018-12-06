@@ -18,6 +18,9 @@ public class DataTransmission{
 	//连接ip:port为ip_port的数据库
 	DataTransmission(String ip_port,String user,String password) throws SQLException{
 		try {
+			// 注册 JDBC 驱动
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
 			connect = DriverManager.getConnection(ip_port,user,password);
 			stmt = connect.createStatement();
 		}
@@ -85,7 +88,9 @@ public class DataTransmission{
 		while(rs.next()) {
 			TI = new TicketInfo(rs.getString("id"),rs.getString("scity"),
 					rs.getString("tcity"),rs.getString("date"),rs.getInt("num"),rs.getInt("price"));
+//			Result.add(TI);
 		}
+//		return new TicketInfo();
 		return TI;
 	}
 	//余票-1

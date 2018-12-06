@@ -11,7 +11,7 @@ package com;
 import java.sql.SQLException;
 
 public class BackEnd {
-    private static String ip_port = "jdbc:mysql://localhost:3306/TIM";
+    private static String ip_port = "jdbc:mysql://localhost:3306/TIM?serverTimezone=UTC";
     private static String user = "root";
     private static String password = "1234";
     private DataTransmission dataTrans = null;
