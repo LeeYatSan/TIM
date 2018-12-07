@@ -43,4 +43,5 @@ public class BackEnd {
         else
             return false;
     }
+    public String getSaleInfo(){return "";}
 }
