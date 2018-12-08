@@ -1,9 +1,3 @@
-/**
- *@author
- *GeXiaodong
- *ID: 16130120194
- */
-
 package com;
 
 import java.sql.Connection;
@@ -64,7 +58,7 @@ public class DataTransmission{
 
 		while(rs.next()) {
 			TI = new TicketInfo(rs.getString("id"),rs.getString("scity"),
-					rs.getString("tcity"),rs.getString("date"),rs.getInt("num"),rs.getInt("price"));
+					rs.getString("tcity"),rs.getString("date")+"-"+rs.getString("time"),rs.getInt("num"),rs.getInt("price"));
 			Result.add(TI);
 		}
 		return Result;
@@ -86,6 +80,7 @@ public class DataTransmission{
 	}
 
 	public  TicketInfo getTicket(String ID,String date) throws SQLException {
+		date = date.substring(0,date.indexOf("-"));
 		String sql = "select * from TicketInfo where id = ? AND date = ?";
 		PreparedStatement ps = connect.prepareStatement(sql);
 		ps.setString(1, ID);

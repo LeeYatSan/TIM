@@ -1,9 +1,3 @@
-/**
- *@author
- *GeXiaodong
- *ID: 16130120194
- */
-
 package com;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -32,7 +26,7 @@ public class AdminTable {
 		Connection connect = null;
 		connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tim?serverTimezone=UTC","root","1234");
 		ResultSet rs1;
-		String sql1 = "select * from Purchase ";
+		String sql1 = "select * from Purchase";
 		PreparedStatement ps = connect.prepareStatement(sql1);
 		rs1 = ps.executeQuery();	
 		rs1.last();	
@@ -62,15 +56,15 @@ public class AdminTable {
 			stmt = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs1 = stmt.executeQuery("select * from Purchase");
 			int i = 0;
-			while (rs1.next()) {
+			while (rs1.next()) {				
 					rowData[i][0] = String.valueOf(i+1);
 					rowData[i][1] = rs1.getString("route_id");
 					rowData[i][2] = rs1.getString("date");
 					rowData[i][3] = rs1.getString("pay");
-					rowData[i][4] = rs1.getString("money");
-					array[i]=rs1.getInt("id");
+					rowData[i][4] = rs1.getString("back_money");
+					array[i]=rs1.getInt("purchase_id");
 					i++;
-
+				
 			}	
 		}
 		catch (Exception e) {

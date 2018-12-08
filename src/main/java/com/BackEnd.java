@@ -11,7 +11,7 @@ package com;
 import java.sql.SQLException;
 
 public class BackEnd {
-    private static String ip_port = "jdbc:mysql://localhost:3306/TIM?serverTimezone=UTC";
+    private static String ip_port = "jdbc:mysql://localhost:3306/tim?serverTimezone=UTC&&useSSL=false";
     private static String user = "root";
     private static String password = "1234";
     private DataTransmission dataTrans = null;
@@ -37,11 +37,10 @@ public class BackEnd {
         dataTrans.purchaseRecord(ID, date, pay, change);
     }
     public boolean checkNum(String ID, String date) throws SQLException{
-        TicketInfo ticket = dataTrans.getTicket(ID, date);
+        TicketInfo ticket = dataTrans.getTicket(ID,date);
         if (Integer.valueOf(ticket.getNum())>0)
             return true;
         else
             return false;
     }
-    public String getSaleInfo(){return "";}
 }

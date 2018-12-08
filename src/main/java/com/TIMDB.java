@@ -1,9 +1,3 @@
-/**
- *@author
- *GeXiaodong
- *ID: 16130120194
- */
-
 package com;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +14,7 @@ public class TIMDB {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println(user);
 			System.out.println(password);
-			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/timdb?serverTimezone=UTC&&useSSL=false","root","1234");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tim?serverTimezone=UTC&&useSSL=false","root","1234");
 			stmt = connect.createStatement();
 			String sql = "insert into start values(?,?)";
 			PreparedStatement ps = connect.prepareStatement(sql);
@@ -75,9 +69,9 @@ public class TIMDB {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tim?serverTimezone=UTC&&useSSL=false","root","1234");
-			String sql = "select * from start";
+			String sql = "select * from start where user1 = ?";
 			PreparedStatement ps=connect.prepareStatement(sql);
-
+			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				if (rs.getRow()==0)

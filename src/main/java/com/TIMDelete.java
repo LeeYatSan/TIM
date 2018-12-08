@@ -1,9 +1,3 @@
-/**
- *@author
- *GeXiaodong
- *ID: 16130120194
- */
-
 package com;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +13,7 @@ public class TIMDelete {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tim?serverTimezone=UTC&&useSSL=false","root","1234");
 			stmt = connect.createStatement();
-			String sql1 = "delete from Purchase where id = ? ";
+			String sql1 = "delete from Purchase where purchase_id = ? ";
 			PreparedStatement ps1=connect.prepareStatement(sql1);
 			ps1.setInt(1, id);
 			ps1.execute();

@@ -1,9 +1,3 @@
-/**
- *@author
- *GeXiaodong
- *ID: 16130120194
- */
-
 package com;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,13 +16,13 @@ public class TIMUpdate {
 			stmt = connect.createStatement();
 			String sql1 = null;
 			if (num == 1)
-				sql1 = "update Purchase set route_id = ? where id = ?";
+				sql1 = "update Purchase set route_id = ? where purchase_id = ?";
 			else if (num == 2)
-				sql1 = "update Purchase set date = ? where id = ?";
+				sql1 = "update Purchase set date = ? where purchase_id = ?";
 			else if (num == 3)
-				sql1 = "update Purchase set pay = ? where id = ?";
+				sql1 = "update Purchase set pay = ? where purchase_id = ?";
 			else if (num == 4)
-				sql1 = "update Purchase set money = ? where id = ?";
+				sql1 = "update Purchase set money = ? where purchase_id = ?";
 			PreparedStatement ps1=connect.prepareStatement(sql1);
 			ps1.setString(1, value);
 			ps1.setInt(2, id);
