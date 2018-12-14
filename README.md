@@ -42,3 +42,5 @@ Ticket Information Manager
 | +void purchaseRecord(String ID,String date,String pay,String change)   | Record the certain purchase. |
 | +void close() | Dconnection. |
 
+## Result
+![image](https://github.com/LeeYatSan/TIM/blob/master/image/screenshot1.jpg)
